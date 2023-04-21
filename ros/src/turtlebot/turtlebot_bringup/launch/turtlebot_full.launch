@@ -1,0 +1,13 @@
+<launch>
+  
+  <!-- Base drivers -->
+  <include file="$(find turtlebot_bringup)/launch/minimal.launch"/>
+
+  <!-- RGB Camera -->
+  <include file="$(find turtlebot_bringup)/launch/astra.launch">
+  </include>
+
+  <!-- RPLIDAR Laser -->
+  <include file="$(find turtlebot_bringup)/launch/rplidar.launch"/>
+
+</launch>

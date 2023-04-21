@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+	<world name="default">
+    <!-- First floor model -->
+		<include>
+			<uri>model://first_floor</uri>
+			<name>first_floor</name>
+			<pose>0 0 0 0 0 0</pose>
+		</include>
+		
+		<include>
+			<uri>model://sun</uri>
+		</include>
+ 
+		<scene>
+			<grid>false</grid>
+		</scene>
+	</world>
+</sdf>

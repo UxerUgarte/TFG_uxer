@@ -1,0 +1,23 @@
+<launch>
+
+  <!-- Uncomment to launch both Gazebo World and Gmapping -->
+  <!-- <include file="$(find gazebo_utils)/launch/tartalo_first_floor.launch"/> -->
+  
+  <!-- Launch gmapping node -->
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" args="/scan">
+    <param name="delta" type="double" value="0.05" />
+    <param name="temporalUpdate" type="double" value="2.5" />
+    <param name="xmin" type="double" value="-2" />
+    <param name="xmax" type="double" value="2" />
+    <param name="ymin" type="double" value="-2" />
+    <param name="ymax" type="double" value="2" />
+  </node>
+
+  <!-- Launch keyboard teleoperation -->
+  <include file="$(find teleop)/launch/keyboard_teleop.launch"/>
+
+  <!-- Launch rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-f map -d $(find gazebo_navigation)/rviz/gmapping.rviz" />
+
+</launch>
+

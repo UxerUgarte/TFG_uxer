@@ -1,0 +1,47 @@
+<launch>
+  <master auto="start"/>
+
+<!-- group ns="tartalo"-->
+
+  <!-- Uncomment to launch both Gazebo World and Navigation -->
+  <!-- <include file="$(find gazebo_utils)/launch/tartalo_first_floor.launch"/> -->
+
+  <!-- Select the map to load -->
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find maps)/map.yaml">
+	  <param name="frame_id" value="map"/>
+  </node>
+
+  <!--- Run AMCL -->
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+    <remap from="amcl_pose" to="/tartalo/amcl_pose"/>
+	  <param name="odom_frame_id" value="odom"/>
+    <param name="base_frame_id" value="base_link"/>
+	  <param name="global_frame_id" value="map"/>
+
+	  <param name="initial_pose_x" value="44.5"/><!--44.5-->
+	  <param name="initial_pose_y" value="10.5"/><!--10.5-->
+	  <param name="initial_pose_a" value="3.1416"/><!--3.1416-->
+
+    <param name="odom_alpha1" value="0.1"/>
+    <param name="odom_alpha2" value="0.1"/>
+    <param name="odom_alpha3" value="0.1"/>
+    <param name="odom_alpha4" value="0.1"/>
+  </node>
+
+  <!-- Run move_base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+	    <!--<remap from="odom" to="/tartalo/odom" />-->
+        <!--<remap from="cmd_vel" to="/tartalo/cmd_vel" />-->
+	    <rosparam file="$(find gazebo_navigation)/config/tartalo/costmap_common_params_gazebo.yaml" command="load" ns="global_costmap"/>
+	    <rosparam file="$(find gazebo_navigation)/config/tartalo/costmap_common_params_gazebo.yaml" command="load" ns="local_costmap"/>
+	    <rosparam file="$(find gazebo_navigation)/config/tartalo/local_costmap_params_gazebo.yaml" command="load" />
+	    <rosparam file="$(find gazebo_navigation)/config/tartalo/global_costmap_params_gazebo.yaml" command="load" />
+	    <rosparam file="$(find gazebo_navigation)/config/tartalo/base_local_planner_params.yaml" command="load"/>
+  </node>
+
+  <!-- Run rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find gazebo_navigation)/rviz/navigation.rviz"/>
+
+<!--  /group-->
+
+</launch>

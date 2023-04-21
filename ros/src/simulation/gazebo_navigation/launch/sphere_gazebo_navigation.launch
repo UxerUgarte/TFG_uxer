@@ -1,0 +1,49 @@
+<launch>
+  <master auto="start"/>
+
+<!-- group ns="sphere"-->
+
+  <param name="/use_sim_time" value="true"/>
+  
+  <!-- <include file="$(find gazebo_utils)/launch/sphere_simple_world.launch"/> -->
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find maps)/map.yaml">
+	<param name="frame_id" value="map"/>
+  </node>
+  
+  <!--- Run AMCL -->
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+  	<!-- <remap from="amcl_pose" to="/sphere/amcl_pose"/> -->
+	<remap from="scan" to="/sphere/scan"/>
+	<param name="odom_frame_id" value="sphere/odom"/>
+    <param name="base_frame_id" value="sphere/base_link"/>
+	<param name="global_frame_id" value="map"/>
+
+	<param name="initial_pose_x" value="-3.2"/><!--44.5-->
+	<param name="initial_pose_y" value="-4.5"/><!--10.5-->
+	<param name="initial_pose_a" value="0.0"/><!--3.1416-->
+
+	<param name="odom_alpha1" value="0.1"/>
+	<param name="odom_alpha2" value="0.1"/>
+	<param name="odom_alpha3" value="0.1"/>
+	<param name="odom_alpha4" value="0.1"/>
+  </node>
+  <!-- Run move_base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+	<remap from="odom" to="/sphere/odom" />
+	<remap from="cmd_vel" to="/sphere/cmd_vel" />
+	<remap from="scan" to="/sphere/scan"/>
+	<rosparam file="$(find gazebo_navigation)/config/sphere/costmap_common_params_gazebo.yaml" command="load" ns="global_costmap"/>
+	<rosparam file="$(find gazebo_navigation)/config/sphere/costmap_common_params_gazebo.yaml" command="load" ns="local_costmap"/>
+	<rosparam file="$(find gazebo_navigation)/config/sphere/local_costmap_params_gazebo.yaml" command="load" />
+	<rosparam file="$(find gazebo_navigation)/config/sphere/global_costmap_params_gazebo.yaml" command="load" />
+	<rosparam file="$(find gazebo_navigation)/config/sphere/base_local_planner_params.yaml" command="load"/>
+  </node>  
+  
+  <!-- Run rviz -->
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find gazebo_navigation)/config/sphere/sphere_nav.rviz"/> -->
+
+<!--  /group-->
+
+</launch>

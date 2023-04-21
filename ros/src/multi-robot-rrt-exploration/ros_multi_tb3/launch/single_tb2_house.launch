@@ -1,0 +1,58 @@
+<launch>
+  <!-- <arg name="model" default="turtlebot" doc="model type [turtlebot, waffle, waffle_pi]"/> -->
+  <!-- <arg name="move_forward_only" default="false"/> -->
+  <!-- <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/> -->
+
+  
+  <!-- <arg name='first_tb3' default="tb3_0"/> -->
+  <arg name="x_pos" default="5.0"/>
+  <arg name="y_pos" default=" 1.0"/>
+  <arg name="z_pos" default=" 0.0"/>
+  <arg name="yaw_pos"   default=" 0.0"/>
+  <!-- <arg name="x_pos" default="0.9"/>
+  <arg name="y_pos" default=" 1.7"/>
+  <arg name="z_pos" default=" 0.0"/>
+  <arg name="yaw_pos"   default=" 0.0"/> -->
+
+
+  <!-- launch gazebos from the data -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find ros_multi_tb3)/worlds/turtlebot3_house_mod.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>  
+
+  <!-- spawn the robots and related information -->
+    
+  <!-- <param name="robot_description" command="$(find xacro)/xacro $(find ros_multi_tb3)/urdf/turtlebot3_$(arg model)_tb3.urdf.xacro tf_prefix:=$(arg first_tb3)"/> -->
+  <!-- ################################################################################################# -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot_description)/robots/kobuki_hexagons_astra_icsi.urdf.xacro botname:=turtlebot"/> 
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+    <param name="publish_frequency" type="double" value="30.0" />
+    <!-- <param name="tf_prefix" value="$(arg first_tb3)" /> -->
+  </node>
+    
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model turtlebot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -Y $(arg yaw_pos) -param robot_description" />
+
+  <!-- Gmapping for Turtlebot -->
+  <include file="$(find turtlebot_navigation)/launch/gmapping.launch">
+    <arg name="use_rviz" value="0"/>
+    <arg name="use_joyteleop" value="0"/>
+    <arg name="use_keyboard" value="0"/>
+  </include>  
+
+  <!-- Move base for Turtlebot -->
+  <include file="$(find turtlebot_navigation)/launch/move_base.launch"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="world_to_mergedmap_tf_broadcaster"  args="0.385 0.385 0 0 0 0 world map 20"/>
+  <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_mergedmap_tf_broadcaster"  args="0 0 0 0 0 0 world map 100"/> -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_turtlebot_tf_broadcaster"  args="0 0 0 0 0 0 /map /$(arg first_tb3)/map 20"/> -->
+
+  <!-- rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find ros_multi_tb3)/rviz/single_tb2_gmapping.rviz"/>
+
+</launch>

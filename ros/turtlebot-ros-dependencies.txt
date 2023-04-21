@@ -1,0 +1,9 @@
+# ROS Dependencies
+# Kobuki and Turtlebot
+sudo apt install ros-noetic-ecl-threads ros-noetic-ecl-geometry ros-noetic-ecl-streams ros-noetic-kobuki-msgs ros-noetic-kobuki-dock-drive ros-noetic-kobuki-driver
+# Navigation
+sudo apt install ros-noetic-gmapping ros-noetic-move-base ros-noetic-amcl ros-noetic-map-server ros-noetic-dwa-local-planner 
+# Astra
+Instructions in https://github.com/orbbec/ros_astra_camera
+# RRT Exploration
+sudo apt install ros-noetic-octomap-rviz-plugins

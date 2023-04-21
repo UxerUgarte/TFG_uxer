@@ -1,0 +1,8 @@
+prefix=/home/uxer/turtlebot/ros/install
+
+Name: gazebo_navigation
+Description: Description of gazebo_navigation
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

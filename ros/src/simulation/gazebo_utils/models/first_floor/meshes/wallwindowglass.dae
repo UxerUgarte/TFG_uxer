@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.77.0 commit date:2016-04-05, commit time:18:12, hash:abf6f08</authoring_tool>
+    </contributor>
+    <created>2016-05-09T10:41:02</created>
+    <modified>2016-05-09T10:41:02</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Glass-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0.3526429 0.388609 0.4 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.3526429 0.388609 0.4 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.3526429 0.388609 0.4 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <transparency>
+              <float sid="transparency">0.2131935</float>
+            </transparency>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Glass-material" name="Glass">
+      <instance_effect url="#Glass-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plane_007-mesh" name="Plane.007">
+      <mesh>
+        <source id="Plane_007-mesh-positions">
+          <float_array id="Plane_007-mesh-positions-array" count="192">-32.04377 -2.087712 0.02548044 -32.04377 2.087726 0.02548044 -29.1903 2.087722 0.0254805 -29.1903 -2.087715 0.0254805 -32.04377 -2.087712 1.663398 -32.04377 2.087726 1.663398 -29.1903 2.087722 1.663398 -29.1903 -2.087715 1.663398 -32.04377 -2.087712 -1.640587 -29.1903 -2.087715 -1.640587 -32.04377 -2.087712 -0.04830443 -29.1903 -2.087715 -0.04830437 -29.14809 -2.087715 0.0254805 -29.14809 2.087722 0.0254805 -26.28269 2.087719 0.0254805 -26.28269 -2.087718 0.0254805 -29.14809 -2.087715 1.663398 -29.14809 2.087722 1.663398 -26.28269 2.087719 1.663398 -26.28269 -2.087718 1.663398 -29.14809 -2.087715 -1.640587 -26.28269 -2.087718 -1.640587 -29.14809 -2.087715 -0.04830437 -26.28269 -2.087718 -0.04830437 -32.04377 2.006812 -0.04830437 -32.04377 2.006812 -1.640587 -29.1903 2.006809 -1.640587 -29.14809 2.006809 -1.640587 -26.28269 2.006805 -1.640587 -26.28269 2.006805 -0.04830431 -29.14809 2.006809 -0.04830437 -29.1903 2.006809 -0.04830437 -2.875529 -2.087749 0.02548068 -2.875529 2.087688 0.02548068 -0.0220555 2.087688 0.02548068 -0.0220555 -2.087749 0.02548068 -2.875529 -2.087749 1.663398 -2.875529 2.087688 1.663398 -0.0220555 2.087688 1.663398 -0.0220555 -2.087749 1.663398 -2.875529 -2.087749 -1.640587 -0.0220555 -2.087749 -1.640587 -2.875529 -2.087749 -0.0483042 -0.0220555 -2.087749 -0.0483042 0.02015763 -2.087749 0.02548068 0.02015763 2.087688 0.02548068 2.885561 2.087688 0.02548068 2.885561 -2.087749 0.02548068 0.02015763 -2.087749 1.663398 0.02015763 2.087688 1.663398 2.885561 2.087688 1.663398 2.885561 -2.087749 1.663398 0.02015763 -2.087749 -1.640587 2.885561 -2.087749 -1.640587 0.02015763 -2.087749 -0.0483042 2.885561 -2.087749 -0.0483042 -2.87553 2.006775 -0.0483042 -2.87553 2.006775 -1.640587 -0.02205562 2.006775 -1.640587 0.02015781 2.006775 -1.640587 2.885561 2.006775 -1.640587 2.885561 2.006775 -0.0483042 0.02015781 2.006775 -0.0483042 -0.02205562 2.006775 -0.0483042</float_array>
+          <technique_common>
+            <accessor source="#Plane_007-mesh-positions-array" count="64" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_007-mesh-normals">
+          <float_array id="Plane_007-mesh-normals-array" count="54">1.16975e-6 1 0 -1.16975e-6 -1 0 -1.16975e-6 -1 0 1.16488e-6 1 0 -1.16488e-6 -1 0 -1.16488e-6 -1 0 1.16489e-6 1 0 1.16975e-6 1 0 0 1 0 0 -1 0 0 0 -1 1.16975e-6 1 0 -1.16975e-6 -1 0 1.16488e-6 1 0 -1.16488e-6 -1 0 -1.16489e-6 -1 0 1.16488e-6 1 0 1.16975e-6 1 0</float_array>
+          <technique_common>
+            <accessor source="#Plane_007-mesh-normals-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane_007-mesh-map-0">
+          <float_array id="Plane_007-mesh-map-0-array" count="204">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</float_array>
+          <technique_common>
+            <accessor source="#Plane_007-mesh-map-0-array" count="102" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane_007-mesh-vertices">
+          <input semantic="POSITION" source="#Plane_007-mesh-positions"/>
+        </vertices>
+        <polylist material="Glass-material" count="34">
+          <input semantic="VERTEX" source="#Plane_007-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane_007-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane_007-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>6 0 0 1 0 1 5 0 2 4 1 3 3 1 4 7 1 5 10 2 6 9 2 7 11 2 8 18 3 9 13 3 10 17 3 11 16 4 12 15 4 13 19 4 14 22 5 15 21 5 16 23 5 17 28 6 18 30 6 19 29 6 20 25 7 21 31 7 22 26 7 23 38 8 24 33 8 25 37 8 26 36 9 27 35 9 28 39 9 29 42 9 30 41 9 31 43 9 32 50 8 33 45 8 34 49 8 35 48 9 36 47 9 37 51 9 38 54 9 39 53 9 40 55 9 41 46 10 42 44 10 43 45 10 44 59 8 45 61 8 46 60 8 47 56 8 48 58 8 49 57 8 50 6 11 51 2 11 52 1 11 53 4 12 54 0 12 55 3 12 56 10 2 57 8 2 58 9 2 59 18 13 60 14 13 61 13 13 62 16 14 63 12 14 64 15 14 65 22 15 66 20 15 67 21 15 68 28 16 69 27 16 70 30 16 71 25 17 72 24 17 73 31 17 74 38 8 75 34 8 76 33 8 77 36 9 78 32 9 79 35 9 80 42 9 81 40 9 82 41 9 83 50 8 84 46 8 85 45 8 86 48 9 87 44 9 88 47 9 89 54 9 90 52 9 91 53 9 92 46 10 93 47 10 94 44 10 95 59 8 96 62 8 97 61 8 98 56 8 99 63 8 100 58 8 101</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="WallWindowGlass" name="WallWindowGlass" type="NODE">
+        <matrix sid="transform">0.809293 0 0 10.75603 0 0.07883085 0 -15.31026 0 0 0.8461177 1.5 0 0 0 1</matrix>
+        <instance_geometry url="#Plane_007-mesh" name="WallWindowGlass">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Glass-material" target="#Glass-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

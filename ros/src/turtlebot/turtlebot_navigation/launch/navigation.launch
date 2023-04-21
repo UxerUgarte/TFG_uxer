@@ -1,0 +1,33 @@
+<launch>
+
+  <!-- Setup arguments-> 0:deactivated, 1:activated -->
+
+  <arg name="use_rviz" default="0"/>
+	<arg name="use_joyteleop" value="0"/>
+  <arg name="use_keyboard" value="0"/>
+	<arg name="hostname" default="192.168.1.101" />
+
+  <!-- Launch turtlebot platform -->
+  <!-- <include file="$(find turtlebot_bringup)/launch/turtlebot.launch"/> -->
+
+  <!-- Run the map server (you can run it here or in another terminal) -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find turtlebot_navigation)/maps/map.yaml"/>
+
+  <!--- Run AMCL -->
+  <include file="$(find turtlebot_navigation)/launch/amcl.launch" />
+  
+  <!--- Run move base -->
+  <include file="$(find turtlebot_navigation)/launch/move_base.launch" />
+
+  <!-- Launch keyboard teleoperation -->
+  <group if="$(arg use_keyboard)" > 
+    <include file="$(find turtlebot_teleop)/launch/keyboard_teleop.launch" />
+  </group>
+
+  <!-- Launch rviz -->
+  <group if="$(arg use_rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-f map -d $(find turtlebot_navigation)/config/navigation.rviz" />
+  </group>
+  
+</launch>
+
