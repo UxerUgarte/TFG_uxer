@@ -46,7 +46,7 @@
   </include>  
 
   <!-- Move base for Turtlebot -->
-  <include file="$(find turtlebot_navigation)/launch/move_base.launch"/>
+  <include file="$(find turtlebot_navigation)/launch/move_base_teb.launch"/>
 
   <node pkg="tf" type="static_transform_publisher" name="world_to_mergedmap_tf_broadcaster"  args="0.385 0.385 0 0 0 0 world map 20"/>
   <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_mergedmap_tf_broadcaster"  args="0 0 0 0 0 0 world map 100"/> -->

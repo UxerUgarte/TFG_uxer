@@ -5,19 +5,21 @@
 
   
   <!-- <arg name='first_tb3' default="tb3_0"/> -->
-  <!-- <arg name="x_pos" default="5.0"/>
-  <arg name="y_pos" default=" 1.0"/>
-  <arg name="z_pos" default=" 0.0"/>
-  <arg name="yaw_pos"   default=" 0.0"/> -->
-  <arg name="x_pos" default="0.9"/>
-  <arg name="y_pos" default=" 1.7"/>
+  <arg name="x_pos" default="11.7"/>
+  <arg name="y_pos" default=" -4.2"/>
   <arg name="z_pos" default=" 0.0"/>
   <arg name="yaw_pos"   default=" 0.0"/>
+  <!-- <arg name="x_pos" default="0.9"/>
+  <arg name="y_pos" default=" 1.7"/>
+  <arg name="z_pos" default=" 0.0"/>
+  <arg name="yaw_pos"   default=" 0.0"/> -->
 
 
   <!-- launch gazebos from the data -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find ros_multi_tb3)/worlds/turtlebot3_house_mod.world"/>
+  
+    <!-- <arg name="world_name" value="$(find ros_multi_tb3)/worlds/turtlebot3_house_mod.world"/> -->
+    <arg name="world_name" value="$(find gazebo_utils)/worlds/first_floor.world"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>

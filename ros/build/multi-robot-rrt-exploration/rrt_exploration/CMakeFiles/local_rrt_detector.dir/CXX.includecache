@@ -26,10 +26,6 @@ visualization_msgs/Marker.h
 
 /home/uxer/turtlebot/ros/src/multi-robot-rrt-exploration/rrt_exploration/include/mtrand.h
 
-/home/uxer/turtlebot/ros/src/multi-robot-rrt-exploration/rrt_exploration/src/functions.cpp
-functions.h
-/home/uxer/turtlebot/ros/src/multi-robot-rrt-exploration/rrt_exploration/src/functions.h
-
 /home/uxer/turtlebot/ros/src/multi-robot-rrt-exploration/rrt_exploration/src/local_rrt_detector.cpp
 ros/ros.h
 /home/uxer/turtlebot/ros/src/multi-robot-rrt-exploration/rrt_exploration/src/ros/ros.h
@@ -63,10 +59,6 @@ visualization_msgs/Marker.h
 /home/uxer/turtlebot/ros/src/multi-robot-rrt-exploration/rrt_exploration/src/visualization_msgs/Marker.h
 tf/transform_listener.h
 -
-
-/home/uxer/turtlebot/ros/src/multi-robot-rrt-exploration/rrt_exploration/src/mtrand.cpp
-mtrand.h
-/home/uxer/turtlebot/ros/src/multi-robot-rrt-exploration/rrt_exploration/src/mtrand.h
 
 /opt/ros/noetic/include/geometry_msgs/Point.h
 string

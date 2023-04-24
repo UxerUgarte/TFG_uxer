@@ -87,8 +87,8 @@ ros::Rate rate(100);
  
  
 // wait until map is received, when a map is received, mapData.header.seq will not be < 1  
-while (mapData.header.seq<1 or mapData.data.size()<1)  {  ros::spinOnce();  ros::Duration(0.1).sleep();}
-
+//while (mapData.header.seq<1 or mapData.data.size()<1)  {  ros::spinOnce();  ros::Duration(0.1).sleep();}
+while (mapData.header.seq<1 and mapData.data.size()<1)  {  ros::spinOnce();  ros::Duration(0.1).sleep();}
 
 
 //visualizations  points and lines..
