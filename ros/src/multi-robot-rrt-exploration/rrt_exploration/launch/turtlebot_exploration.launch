@@ -2,18 +2,23 @@
 
 
 <launch>
-    <arg name="eta" value="1.0"/>
-    <arg name="Geta" value="1.0"/>
-    <arg name="info_radius" value="1.0"/>
+    <arg name="eta" default="1.0"/>
+    <arg name="Geta" default="1.0"/>
+    <arg name="info_radius" default="1.0"/>
     <arg name="info_multiplier" value="3.0"/>
-    <arg name="hysteresis_radius" value="3.0"/>
+    <arg name="hysteresis_radius" default="3.0"/>
     <arg name="hysteresis_gain" value="3.0"/>
     <arg name="costmap_clearing_threshold" value="50"/>
     <arg name="delay_after_assignement" value="0.7"/>   
-    <arg name="bandwith_cluster" value="0.3"/>   
+    <arg name="bandwith_cluster" default="0.3"/>   
     <arg name="frequency1" value="5.0"/>
     <arg name="detected_frontier" value="/detected_points"/>
     <arg name="filtered_frontier" value="/filtered_points"/>
+
+    <arg name="max_changed_cells" default="190000.0"/>   
+    <arg name="max_run_time" default="1200.0"/>
+    <arg name="filename" default="/home/uxer/Escritorio/probak/a.data"/>
+    <arg name="filename2" default="~/Escritorio/probak/map"/>
     <!-- <arg name="rd_metric" value="15.0"/> -->
     <!-- robot name space definition -->
     <arg name="global_map" value ="/map"/>
@@ -65,5 +70,17 @@
       <param name="frontiers_topic" value="/filtered_points"/> 
       <param name="robot_namelist" value=""/>
       <param name="delay_after_assignement" value="$(arg delay_after_assignement)"/>
+    </node>
+
+    <!-- for the info node  -->
+    <node pkg="rrt_exploration" type="info.py" name="info" output="screen">
+      <param name="max_changed_cells" value="$(arg max_changed_cells)"/>
+      <param name="run_time" value="$(arg max_run_time)"/> 
+      <param name="filename" value="$(arg filename)"/> 
+      <param name="filename2" value="$(arg filename2)"/> 
+    </node>
+
+    <!-- for the clicked_point_publisher node  -->
+    <node pkg="rrt_exploration" type="click_publisher.py" name="clicked_point_publisher" output="screen">
     </node>
 </launch>

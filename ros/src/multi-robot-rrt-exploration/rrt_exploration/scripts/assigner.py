@@ -13,13 +13,16 @@ from numpy import array
 from numpy import linalg as LA
 from numpy import all as All
 from numpy import inf
-from functions import robot,informationGain,discount
+from functions import robot,informationGain,discount, unvalid
 from numpy.linalg import norm
 
 # Subscribers' callbacks------------------------------
 mapData=OccupancyGrid()
 frontiers=[]
 globalmaps=[]
+unreachable = {}
+centroids_dict = {}
+
 def callBack(data):
 	global frontiers
 	frontiers=[]
@@ -32,9 +35,10 @@ def mapCallBack(data):
 # Node----------------------------------------------
 
 def node():
-	global frontiers,mapData,globalmaps
+	global frontiers,mapData,globalmaps, unreachable, centroids_dict
 	rospy.init_node('assigner', anonymous=False)
 	
+	first = True
 	# fetching all parameters
 	map_topic								= rospy.get_param('~map_topic','/map')
 	info_radius							= rospy.get_param('~info_radius',1.0)					#this can be smaller than the laser scanner range, >> smaller >>less computation time>> too small is not good, info gain won't be accurate
@@ -45,7 +49,8 @@ def node():
 	delay_after_assignement	= rospy.get_param('~delay_after_assignement',0.5)
 	rateHz 									= rospy.get_param('~rate',100)
 	robot_namelist          = rospy.get_param('~robot_namelist', "robot1")
-	
+	max_time = rospy.get_param('~max_time',4)
+	max_dist = rospy.get_param('~max_dist',1)
 	rate = rospy.Rate(rateHz)
 #-------------------------------------------
 	rospy.Subscriber(map_topic, OccupancyGrid, mapCallBack)
@@ -91,6 +96,11 @@ def node():
 #get dicount and update informationGain
 		for i in nb+na:
 			infoGain=discount(mapData,robots[i].assigned_point,centroids,infoGain,info_radius)
+
+		for elem in centroids:
+			pointStr = str(elem)
+			if pointStr not in centroids_dict:
+				centroids_dict[pointStr] = 0
 #-------------------------------------------------------------------------            
 		revenue_record=[]
 		centroid_record=[]
@@ -129,16 +139,45 @@ def node():
 					centroid_record.append(centroids[ip])
 					id_record.append(ir)
 		
+		rospy.loginfo("Posicion del rooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooot: "+str(robots[0].getPosition()))	
 		rospy.loginfo("revenue record: "+str(revenue_record))	
 		rospy.loginfo("centroid record: "+str(centroid_record))	
 		# rospy.loginfo("robot IDs record: "+str(id_record))	
 		
 #-------------------------------------------------------------------------	
 		if (len(id_record)>0):
-			winner_id=revenue_record.index(max(revenue_record))
+			if not first:
+				end = time()
+				rospy.loginfo(previous_centroid + " pointaaaaaaaaa: " + str(end-start))
+				robot_pos = robots[0].getPosition()
+				target_p = robots[0].assigned_point
+				robot_x = robot_pos[0]
+				robot_y = robot_pos[1]
+				dist = ((robot_x-target_p[0])**2 +(robot_y-target_p[1])**2)**0.5
+				if dist <= max_dist:
+					centroids_dict[previous_centroid] += (end-start) 
+				if centroids_dict[previous_centroid] > max_time:
+					unreachable[previous_centroid] = 0
+			max = -1000000000
+			
+			for i in range(len(revenue_record)):
+				if max<revenue_record[i] and str(centroid_record[i]) not in unreachable:
+					winner_id = i
+					max = revenue_record[i]
+			start = time()
+			first = False
+			#winner_id=revenue_record.index(max(revenue_record))
+			
 			robots[id_record[winner_id]].sendGoal(centroid_record[winner_id])
+			previous_centroid = str(centroid_record[winner_id])
 			rospy.loginfo(robot_namelist[id_record[winner_id]] + "  assigned to  "+str(centroid_record[winner_id]))	
+			rospy.loginfo("Unreachable: " + str(unreachable))
+			rospy.loginfo(str(centroid_record[winner_id]) + " point: " + str(centroids_dict[str(centroid_record[winner_id])]))
+			#rospy.loginfo("Probatzen hauuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu: " , str(mapData.data))
 			rospy.sleep(delay_after_assignement)
+		else:
+			previous_centroid = 0
+			first = True
 #------------------------------------------------------------------------- 
 		rate.sleep()
 #-------------------------------------------------------------------------

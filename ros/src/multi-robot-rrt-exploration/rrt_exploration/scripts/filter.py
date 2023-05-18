@@ -12,6 +12,7 @@ from numpy import array, vstack, delete
 from functions import gridValue, informationGain
 from sklearn.cluster import MeanShift
 from rrt_exploration.msg import PointArray
+from assigner import unreachable
 
 # Subscribers' callbacks------------------------------
 mapData      = OccupancyGrid()
@@ -74,7 +75,7 @@ def node():
 
     rate = rospy.Rate(rateHz)
 # -------------------------------------------
-
+    threshold = 1
     robot_namelist = robot_namelist.split(',')
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -234,22 +235,25 @@ def node():
 # publishing
         arraypoints.points = []
         for i in centroids:
-            tempPoint.x = i[0]
-            tempPoint.y = i[1]
-            arraypoints.points.append(copy(tempPoint))
+            if str(i) not in unreachable:
+                tempPoint.x = i[0]
+                tempPoint.y = i[1]
+                arraypoints.points.append(copy(tempPoint))
             # print("------frontier: [%f %f ]" %( i[0],  i[1]))
         filterpub.publish(arraypoints)
         pp = []
         for q in range(0, len(frontiers)):
-            p.x = frontiers[q][0]
-            p.y = frontiers[q][1]
-            pp.append(copy(p))
+            if str(q) not in unreachable:
+                p.x = frontiers[q][0]
+                p.y = frontiers[q][1]
+                pp.append(copy(p))
         points.points = pp
         pp = []
         for q in range(0, len(centroids)):
-            p.x = centroids[q][0]
-            p.y = centroids[q][1]
-            pp.append(copy(p))
+            if str(q) not in unreachable:
+                p.x = centroids[q][0]
+                p.y = centroids[q][1]
+                pp.append(copy(p))
         points_clust.points = pp
         pub.publish(points)
         pub2.publish(points_clust)

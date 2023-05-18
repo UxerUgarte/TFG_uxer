@@ -1,0 +1,190 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+
+  <model name='third_floor'>
+    <pose>30 20 0 0 0 0</pose>
+    <static>true</static>
+    <link name="floor">
+      <visual name="floor_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/floor.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="floor_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/floor.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wall">
+      <visual name="wall_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/wall.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="wall_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/wall.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>    
+    <link name="windows">
+      <visual name="windows_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/windows.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="windows_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/windows.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="windowsglass">
+      <visual name="windowsglass_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/windowsglass.dae</uri></mesh>
+        </geometry>
+        <transparency>0.5</transparency>
+      </visual>
+      <collision name="windowsglass_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/windowsglass.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="doors">
+      <visual name="doors_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/doors.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="doors_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/doors.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="doorswc">
+      <visual name="doorswc_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/doorswc.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="doorswc_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/doorswc.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="doorscorridor">
+      <visual name="doorscorridor_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/doorscorridor.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="doorscorridor_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/doorscorridor.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="doorsrack">
+      <visual name="doorsrack_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/doorsrack.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="doorsrack_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/doorsrack.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="lift">
+      <visual name="lift_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/lift.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="lift_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/lift.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="corridorglass">
+      <visual name="corridorglass_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/corridorglass.dae</uri></mesh>
+        </geometry>
+        <transparency>0.3</transparency>
+      </visual>
+      <collision name="corridorglass_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/corridorglass.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="columns">
+      <visual name="columns_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/columns.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="columns_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/columns.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="mailbox">
+      <visual name="mailbox_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/mailbox.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="mailbox_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/mailbox.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="printers">
+      <visual name="printers_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/printers.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="printers_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/printers.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="watermachine">
+      <visual name="watermachine_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/watermachine.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="watermachine_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/watermachine.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="coffeemachine">
+      <visual name="coffeemachine_visual">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/coffeemachine.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="coffeemachine_collision">
+        <geometry>
+          <mesh><uri>model://third_floor/meshes/coffeemachine.dae</uri></mesh>
+        </geometry>
+      </collision>
+    </link>        
+  </model>
+</sdf>
